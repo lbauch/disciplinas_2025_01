@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  coletor:
+    image: iot/coletor
+    ports:
+      - "5000:5000"
+    networks:
+      - iot
+
+  sensor_temperatura:
+    image: iot/sensor
+    environment:
+      - TIPO_SENSOR=temperatura
+    networks:
+      - iot
+    deploy:
+      replicas: 1
+
+  sensor_umidade:
+    image: iot/sensor
+    environment:
+      - TIPO_SENSOR=umidade
+    networks:
+      - iot
+    deploy:
+      replicas: 1
+
+  sensor_vento:
+    image: iot/sensor
+    environment:
+      - TIPO_SENSOR=vento
+    networks:
+      - iot
+    deploy:
+      replicas: 1
+
+networks:
+  iot:
+    driver: overlay
