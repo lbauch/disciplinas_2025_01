@@ -1,0 +1,24 @@
+CONCEITO: MeioTransporte
+VALORES: barco, carro
+
+CONCEITO: TempoAntesCompromisso
+VALORES: minutos
+
+CONCEITO: FatorImportante
+VALORES: tempo, conforto
+
+REGRAS:
+
+# Regra para determinar se o tempo é importante
+SE TempoAntesCompromisso <= 10
+ENTÃO FatorImportante = tempo
+
+SE TempoAntesCompromisso > 10
+ENTÃO FatorImportante = conforto
+
+# Regra de escolha de transporte
+SE FatorImportante = tempo
+ENTÃO MeioTransporte = barco
+
+SE FatorImportante = conforto
+ENTÃO MeioTransporte = carro
